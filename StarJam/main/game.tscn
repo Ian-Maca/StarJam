@@ -22,7 +22,8 @@ region_enabled = true
 region_rect = Rect2(-387.978, -408.243, 200000, 200000)
 
 [node name="Player" parent="." instance=ExtResource("1_jxsmd")]
-z_index = 2
+z_index = 6
+z_as_relative = false
 position = Vector2(740, 546)
 
 [node name="Path2D" type="Path2D" parent="Player"]
