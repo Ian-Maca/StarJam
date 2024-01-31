@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://621scb6rnq2u"]
+
+[ext_resource type="PackedScene" uid="uid://f4lpiye38k4q" path="res://player/player.tscn" id="1_jxsmd"]
+[ext_resource type="Script" path="res://main/game.gd" id="1_vkuwy"]
+[ext_resource type="Texture2D" uid="uid://b47ykfnwu4sf7" path="res://Assets/trees/bush.png" id="2_stsca"]
+[ext_resource type="Texture2D" uid="uid://ceq04qiqih3ys" path="res://Assets/addons/white.png" id="4_1hj50"]
+
+[sub_resource type="Curve2D" id="Curve2D_vuekc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -505, -458, 0, 0, 0, 0, 2436, -454, 0, 0, 0, 0, 2436, 1585, 0, 0, 0, 0, -509, 1577, 0, 0, 0, 0, -505, -458)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_vkuwy")
+
+[node name="bgColor" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_stsca")
+region_enabled = true
+region_rect = Rect2(-387.978, -408.243, 200000, 200000)
+
+[node name="Player" parent="." instance=ExtResource("1_jxsmd")]
+z_index = 2
+position = Vector2(740, 546)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-740, -546)
+curve = SubResource("Curve2D_vuekc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(22.6924, 1578.44)
+rotation = -3.13888
+progress = 7393.35
+
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+position = Vector2(3.99997, 0)
+scale = Vector2(106.616, 98.1542)
+energy = 0.84
+texture = ExtResource("4_1hj50")
+texture_scale = 2.3
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.721569, 0.721569, 0.721569, 1)
+blend_mode = 1
+
+[node name="projectiles" type="Node2D" parent="."]
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

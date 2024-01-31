@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://6hl12ockmoxp"]
+
+[ext_resource type="Texture2D" uid="uid://bgoqi52gpgvyx" path="res://Assets/deathscreenbg_image.png" id="1_dclxm"]
+[ext_resource type="FontFile" uid="uid://bw0tj1eldyyfv" path="res://Assets/fonts/NewRocker-Regular.ttf" id="1_qbkah"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+position = Vector2(927, 479)
+texture = ExtResource("1_dclxm")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -28.0
+offset_right = 208.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.24801, 1.04)
+theme_override_fonts/font = ExtResource("1_qbkah")
+theme_override_font_sizes/font_size = 70
+text = "You died!
+"
+horizontal_alignment = 1
