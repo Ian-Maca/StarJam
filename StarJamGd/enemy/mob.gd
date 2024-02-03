@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 const SMOKE_SCENE = preload("res://Assets/smoke_explosion/smoke_explosion.tscn")
 
-var health = 3
+var health
+
+var exp_reward : int
 
 @onready var player = get_node("/root/Game/Player")
 
-var mob_speed = 300
+var mob_speed
 
 func _ready():
 	%slime.play_walk()
@@ -20,11 +22,19 @@ func _physics_process(_delta):
 #called when projectile hits mob
 #decreases mob health and plays hurt animation
 #if mob health is zero kill mob after playing smoke anim
-func take_damage():
-	health -= 1
+func take_damage(projectile):
+	health -= projectile.DAMAGE
 	
 	%slime.play_hurt()
-	if health == 0:
+	
+	#ENEMY DEAD, give xp reward and play smoke animn while killing self
+	if health <= 0:
+		player.xp += self.exp_reward
+		if player.xp >= player.expGate:
+			player.level+=1
+			player.expGate *= 1.7
+			player.level_up()
+			print(player.level)
 		queue_free()
 		var smoke = SMOKE_SCENE.instantiate()
 		get_parent().add_child(smoke)

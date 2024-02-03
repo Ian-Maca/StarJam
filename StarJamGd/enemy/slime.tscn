@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ix621"]
 radius = 33.115
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Rockdude" type="CharacterBody2D"]
 z_index = 4
 z_as_relative = false
 disable_mode = 2

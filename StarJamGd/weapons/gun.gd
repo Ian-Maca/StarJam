@@ -2,6 +2,11 @@ extends Area2D
 
 const BULLET = preload("res://projectiles/bullet.tscn")
 
+var bullet_dmg = 1
+
+func set_fire_rate(rate):
+	$Timer.wait_time = rate
+
 #update gun orientation to look at closest enemy
 func _physics_process(_delta):
 	var enemies_in_range = get_overlapping_bodies()
@@ -27,5 +32,6 @@ func shoot():
 #adds BULLET instance to bulletSpawn
 func add_bullet():
 	var new_bullet = BULLET.instantiate()
+	new_bullet.DAMAGE = bullet_dmg
 	%bulletSpawn.add_child(new_bullet)
 

@@ -3,6 +3,8 @@ extends Area2D
 const SPEED = 1000
 const RANGE = 1200
 
+var DAMAGE = 1
+
 var travelled_distance = 0
 
 #based on its rotation, determines a direction to move
@@ -39,4 +41,4 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	queue_free()
 	if body.has_method("take_damage"):
-		body.take_damage()
+		body.take_damage(self)

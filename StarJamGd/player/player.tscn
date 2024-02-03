@@ -25,6 +25,7 @@ shape = SubResource("CircleShape2D_0d74r")
 zoom = Vector2(0.3, 0.3)
 
 [node name="Gun" parent="." instance=ExtResource("3_sre3p")]
+unique_name_in_owner = true
 position = Vector2(-14, -43)
 
 [node name="HurtBox" type="Area2D" parent="."]

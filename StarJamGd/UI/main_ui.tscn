@@ -23,29 +23,29 @@ script = ExtResource("1_n57tq")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(69.1113, 49.4)
-scale = Vector2(0.539932, 0.385938)
+position = Vector2(110.071, 78.6779)
+scale = Vector2(0.859932, 0.614671)
 texture = ExtResource("2_w1126")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 21.0
-offset_top = 42.0
-offset_right = 336.0
-offset_bottom = 62.0
-scale = Vector2(0.28, 0.28)
+offset_left = 31.0713
+offset_top = 68.6779
+offset_right = 346.071
+offset_bottom = 88.6779
+scale = Vector2(0.48, 0.28)
 theme_override_styles/background = SubResource("StyleBoxFlat_jtbaj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_5wti5")
 show_percentage = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(106, 44)
+position = Vector2(180.071, 71.6779)
 rotation = -2.38939
 scale = Vector2(0.0765822, 0.0458015)
 texture = ExtResource("3_5htau")
 
 [node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(23, 44)
+position = Vector2(33.0713, 71.6779)
 rotation = -2.38939
 scale = Vector2(-0.0873739, -0.0522557)
 texture = ExtResource("3_5htau")
