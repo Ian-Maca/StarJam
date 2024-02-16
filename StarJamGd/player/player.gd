@@ -1,28 +1,31 @@
 extends CharacterBody2D
 
 var level_up_preload = preload("res://UI/level_up.tscn")
-
 signal health_depleted
 
-var speed = 600
-var health : float = 100.0
+const DAMAGE_RATE = 10.0    #how much enemies hurt player
 
-var level : int = 1
-var expGate : int = 1000
-var xp : int = 100
+var speed = 600             #movement speed
+var health : float = 100    #health
+var gunFireTimer = 0.5      #timer that determines fire rate
 
-var gunFireRate = 0.5
-
-const DAMAGE_RATE = 10.0
+var level : int = 1         #current level 
+var expGate : float = 1000    #amount needed for level up
+var xp : int = 100          #current xp
 
 func _ready():
 	#update UI health to char health
 	$MainUI.health = health
-
+	$MainUI.damage = %Gun.bullet_dmg
+	$MainUI.max_health = health
+	$MainUI.xp = xp
+	$MainUI.xp_ceiling = expGate
+	$MainUI.update_xpbar(xp, expGate)
+	
 func _input(event):
 	if(event.is_action_pressed("debug")):
 		#health_depleted.emit()
-		#level_up()
+		level_up()
 		pass
 
 func _physics_process(delta):
@@ -43,27 +46,40 @@ func _physics_process(delta):
 		if health <= 0.0:
 			health_depleted.emit()
 			
-			
 func level_up():
-	run_lvlui_event()
+	await run_lvlui_event()
 	#get_tree().paused = true
 
 func run_lvlui_event():
+	level+=1
+	expGate *= 1.6
+	$MainUI.xp_ceiling = expGate
+	$MainUI.update_xpbar(xp, expGate)
 	var level_up_scene = level_up_preload.instantiate()
-	self.add_child(level_up_scene)
+	self.call_deferred("add_child", level_up_scene)
 	
 func recieve_star(tier):
 	if tier == 0:
-		#SPEED
-		speed *= 1.1
+		#SPEED and PIERCE
+		if(speed < 1500):
+			speed *= 1.3
+		%Gun.bullet_pierce += 1
+		
 	elif tier == 1:
-		#DAMAGE
+		#DAMAGE and FIRE RATE
 		%Gun.bullet_dmg += 2
-		gunFireRate *= 0.94
-		%Gun.set_fire_rate(gunFireRate)
+		$MainUI.damage = %Gun.bullet_dmg
+		
+		gunFireTimer *= 0.90
+		%Gun.set_fire_timer(gunFireTimer)
 	elif tier == 2:
 		#HEALTH
 		health += 50
-	
-	
+		$MainUI.health = health 
+		if $MainUI.max_health < health:
+			$MainUI.max_health = health
+
+func give_xp(m_xp):
+	xp += m_xp
+	$MainUI.xp = xp
 	

@@ -22,7 +22,7 @@ position = Vector2(-4, 17)
 shape = SubResource("CircleShape2D_0d74r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.3, 0.3)
+zoom = Vector2(0.56, 0.56)
 
 [node name="Gun" parent="." instance=ExtResource("3_sre3p")]
 unique_name_in_owner = true

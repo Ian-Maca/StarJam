@@ -47,8 +47,6 @@ texture_scale = 2.3
 
 [node name="MainUI" parent="Player" instance=ExtResource("5_q81pf")]
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1

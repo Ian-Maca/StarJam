@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
 var tier : int
-var speed
+var speed = Vector2.LEFT * 1800
 var stop_half : bool = false
+
+signal star_recieved
 
 func _ready():
 	velocity = Vector2.ZERO
@@ -19,14 +21,15 @@ func _ready():
 var stopper : bool = false
 
 func _process(_delta):
-	if(self.position.x <= -200 and stop_half):
+	if(self.position.x <= -100 and stop_half):
 		#Stop last star at halfway point
 		if(!stopper):
 			StarOpen()
 			stopper = true
 	
-	if(self.position.x <= -420):
+	if(self.position.x <= -200):
 		queue_free()
+		
 	velocity = speed
 	move_and_slide()
 
@@ -38,15 +41,16 @@ func StarOpen():
 	
 	#Move toward player animation
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "scale",Vector2(1.2, 1.2) , 1.5)
+	tween.tween_property(self, "scale",Vector2(0.7, 0.7) , 1.5)
 	$anim.play("spin")
-	tween.tween_property(self, "position", Vector2(self.position.x + 400, 300), 1)
+	tween.tween_property(self, "position", Vector2(self.position.x + 200, 300), 1)
 	tween.tween_property(self, "scale", Vector2(0.001, 0.001), 1.5)
 	await tween.finished
 	
 	#Destroy grandpaent after giving star to the player
 	player.recieve_star(tier)
 	get_parent().get_parent().queue_free()
+	
 	
 	
 

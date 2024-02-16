@@ -3,8 +3,9 @@ extends Area2D
 const BULLET = preload("res://projectiles/bullet.tscn")
 
 var bullet_dmg = 1
+var bullet_pierce = 1
 
-func set_fire_rate(rate):
+func set_fire_timer(rate):
 	$Timer.wait_time = rate
 
 #update gun orientation to look at closest enemy
@@ -33,5 +34,6 @@ func shoot():
 func add_bullet():
 	var new_bullet = BULLET.instantiate()
 	new_bullet.DAMAGE = bullet_dmg
+	new_bullet.pierce = bullet_pierce
 	%bulletSpawn.add_child(new_bullet)
 

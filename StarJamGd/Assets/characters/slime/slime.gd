@@ -1,6 +1,5 @@
 extends Node2D
 
-
 func play_walk():
 	%AnimationPlayer.speed_scale = 1
 	%AnimationPlayer.play("idle")

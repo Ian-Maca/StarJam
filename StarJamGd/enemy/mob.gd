@@ -29,10 +29,11 @@ func take_damage(projectile):
 	
 	#ENEMY DEAD, give xp reward and play smoke animn while killing self
 	if health <= 0:
-		player.xp += self.exp_reward
+		# GIVE player MOB xp
+		#player.xp += self.exp_reward
+		player.give_xp(self.exp_reward)
+		
 		if player.xp >= player.expGate:
-			player.level+=1
-			player.expGate *= 1.7
 			player.level_up()
 			print(player.level)
 		queue_free()

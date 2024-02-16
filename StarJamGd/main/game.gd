@@ -20,11 +20,14 @@ func _on_enemy_spawn_timer_timeout():
 	spawn_mob()
 	mobCount += 1
 	
-	#EVERY x AMOUNT OF MOBS 
+	#PASSIVE MOB STAT INCREASE
+	#EVERY __ AMOUNT OF MOBS 
 	if(mobCount % 50 == 0):
 		$EnemySpawnTimer.wait_time *= 0.98
 		mobHealth += 3
-		mobSpeed *= 1.2
+		if(mobSpeed < 1000):
+			mobSpeed *= 1.2
+			print('Mob speed: ', mobSpeed)
 		mobXpReward *= 2
 		
 		
