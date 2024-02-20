@@ -1,14 +1,14 @@
 extends Area2D
 
 const SPEED = 1000
-const RANGE = 2400
+const RANGE = 5000
 
 var DAMAGE = 1
 var pierce = 1
 var travelled_distance = 0
 
 #based on its rotation, determines a direction to move
-## essentially gets self forward direction
+# essentially gets self forward direction
 var direction
 
 #Returns first root parent node of 'node' with name 'node_name'

@@ -7,7 +7,6 @@ var stop_half : bool = false
 signal star_recieved
 
 func _ready():
-	velocity = Vector2.ZERO
 	if(tier == 0):
 		#SPEED
 		$star.self_modulate = Color.LIGHT_BLUE 
@@ -33,6 +32,8 @@ func _process(_delta):
 	velocity = speed
 	move_and_slide()
 
+
+#Animates star opening and calls recieve_star() on the player
 func StarOpen():
 	velocity = Vector2.ZERO
 	speed = Vector2.ZERO
@@ -41,13 +42,14 @@ func StarOpen():
 	
 	#Move toward player animation
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "scale",Vector2(0.7, 0.7) , 1.5)
-	$anim.play("spin")
-	tween.tween_property(self, "position", Vector2(self.position.x + 200, 300), 1)
-	tween.tween_property(self, "scale", Vector2(0.001, 0.001), 1.5)
-	await tween.finished
+	var tween2 = get_tree().create_tween()
 	
-	#Destroy grandpaent after giving star to the player
+	tween.tween_property(self, "scale",Vector2(0, 0) , 1.5)
+	tween2.tween_property(self, "rotation", 3, 2)
+	
+	await tween.finished
+	await tween2.finished
+	
 	player.recieve_star(tier)
 	get_parent().get_parent().queue_free()
 	

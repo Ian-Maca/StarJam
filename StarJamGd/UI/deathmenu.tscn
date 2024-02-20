@@ -65,7 +65,7 @@ position = Vector2(963, 544)
 sprite_frames = SubResource("SpriteFrames_li71s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "text_warp"
 libraries = {
 "": SubResource("AnimationLibrary_cj0i6")
 }
+autoplay = "text_warp"

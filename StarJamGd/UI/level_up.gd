@@ -20,7 +20,6 @@ func _ready():
 func _on_star_spawner_timeout():
 	star_generate()
 
-
 func star_generate():
 	if starCount <= 14:
 		var star = star_preload.instantiate()
@@ -29,7 +28,6 @@ func star_generate():
 		#stop last star halfway
 		if starCount == 14:
 			star.stop_half = true
-			
 		%starSpawn.add_child(star)
 		star_speed *= 0.90
 		%StarSpawner.wait_time += 0.05

@@ -17,13 +17,13 @@ shape = SubResource("CircleShape2D_kk54y")
 [node name="centerPivot" type="Marker2D" parent="."]
 
 [node name="Pistol" type="Sprite2D" parent="centerPivot"]
-position = Vector2(117, -1)
-scale = Vector2(0.28125, 0.28125)
+position = Vector2(95, -1)
+scale = Vector2(0.415368, 0.415368)
 texture = ExtResource("2_pa55m")
 
 [node name="bulletSpawn" type="Marker2D" parent="centerPivot/Pistol"]
 unique_name_in_owner = true
-position = Vector2(25, -11)
+position = Vector2(57.7801, -40.9276)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

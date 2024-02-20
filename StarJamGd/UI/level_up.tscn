@@ -99,6 +99,7 @@ position = Vector2(117.683, 18.2927)
 
 [node name="Star" parent="starSpawn" instance=ExtResource("3_lapoa")]
 visible = false
+scale = Vector2(3.89705, 3.89705)
 
 [node name="StarSpawner" type="Timer" parent="."]
 unique_name_in_owner = true

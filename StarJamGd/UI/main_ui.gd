@@ -17,7 +17,5 @@ func _process(_delta):
 	%ProgressBar.max_value = max_health
 	%health.text = str(round(health))
 	%damage.text = str(damage)
-	%xp.text = str(round(xp))
-	%xp_ceiling.text = str(xp_ceiling)
 	%XpProgressBar.value = xp
 	

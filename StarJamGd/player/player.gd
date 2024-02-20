@@ -21,12 +21,18 @@ func _ready():
 	$MainUI.xp = xp
 	$MainUI.xp_ceiling = expGate
 	$MainUI.update_xpbar(xp, expGate)
-	
+
 func _input(event):
 	if(event.is_action_pressed("debug")):
 		#health_depleted.emit()
 		level_up()
-		pass
+	elif(event.is_action_pressed("zoom out")):
+		if (%Camera2D.zoom > Vector2(0.25, 0.25)):
+			%Camera2D.zoom -= Vector2(0.05, 0.05) 
+		print(%Camera2D.zoom)
+	elif(event.is_action_pressed("zoom in")):
+		if (%Camera2D.zoom < Vector2(0.7, 0.7)):
+			%Camera2D.zoom += Vector2(0.05, 0.05)
 
 func _physics_process(delta):
 	var direction = Input.get_vector("left", "right","up", "down")
