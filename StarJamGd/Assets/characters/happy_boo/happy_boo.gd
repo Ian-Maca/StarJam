@@ -1,7 +1,7 @@
 extends Node2D
 
 func play_idle_animation():
-	#change visibility of trach, and plays currently
+	#change visibility of track, and plays currently
 	#visible track!
 	%AnimationPlayer.play("idle")
 	%starguy_idle.visible = true

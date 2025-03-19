@@ -11,14 +11,17 @@ config_version=5
 [application]
 
 config/name="StarJammin2"
-run/main_scene="res://main/game.tscn"
+run/main_scene="res://UI/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://character_idle.png"
 
 [display]
 
-window/size/viewport_width=1900
-window/size/viewport_height=1080
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [filesystem]
 

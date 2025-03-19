@@ -1,6 +1,7 @@
 extends Node2D
 
-var mainLevelPacked : PackedScene = preload("res://UI/deathmenu.tscn")
+var mainLevelPacked: PackedScene = preload("res://UI/deathmenu.tscn")
+var mobLevelPacked: PackedScene = preload("res://enemy/slime.tscn")
 
 var mobCount : int = 0
 var mobHealth = 3
@@ -8,7 +9,7 @@ var mobXpReward = 40
 var mobSpeed = 300
 
 func spawn_mob():
-	var mob = preload("res://enemy/slime.tscn").instantiate()
+	var mob = mobLevelPacked.instantiate()
 	%PathFollow2D.progress_ratio = randf()
 	mob.global_position = %PathFollow2D.global_position
 	mob.health = mobHealth

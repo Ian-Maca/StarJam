@@ -9,9 +9,9 @@ var speed = 600             #movement speed
 var health : float = 100    #health
 var gunFireTimer = 0.5      #timer that determines fire rate
 
-var level : int = 1         #current level 
+var level : int = 1           #current level 
 var expGate : float = 1000    #amount needed for level up
-var xp : int = 100          #current xp
+var xp : int = 100            #current xp
 
 func _ready():
 	#update UI health to char health
@@ -20,24 +20,27 @@ func _ready():
 	$MainUI.max_health = health
 	$MainUI.xp = xp
 	$MainUI.xp_ceiling = expGate
+	$MainUI.pierce = %Gun.bullet_pierce
 	$MainUI.update_xpbar(xp, expGate)
 
 func _input(event):
+	const zoom_increment = Vector2(0.05, 0.05)
+	
 	if(event.is_action_pressed("debug")):
-		#health_depleted.emit()
-		level_up()
+		health_depleted.emit()
+		#level_up()
 	elif(event.is_action_pressed("zoom out")):
 		if (%Camera2D.zoom > Vector2(0.25, 0.25)):
-			%Camera2D.zoom -= Vector2(0.05, 0.05) 
-		print(%Camera2D.zoom)
+			%Camera2D.zoom -= zoom_increment
 	elif(event.is_action_pressed("zoom in")):
 		if (%Camera2D.zoom < Vector2(0.7, 0.7)):
-			%Camera2D.zoom += Vector2(0.05, 0.05)
+			%Camera2D.zoom += zoom_increment
 
 func _physics_process(delta):
 	var direction = Input.get_vector("left", "right","up", "down")
 	velocity = direction * speed
 	move_and_slide()
+	
 	if velocity.length() == 0:
 		%HappyBoo.play_idle_animation()
 	else:
@@ -69,11 +72,14 @@ func recieve_star(tier):
 		#SPEED and PIERCE
 		if(speed < 1500):
 			speed *= 1.3
+			
 		%Gun.bullet_pierce += 1
-		
+		$MainUI.pierce = %Gun.bullet_pierce
 	elif tier == 1:
 		#DAMAGE and FIRE RATE
 		%Gun.bullet_dmg += 2
+		
+		#UI update
 		$MainUI.damage = %Gun.bullet_dmg
 		
 		gunFireTimer *= 0.90
@@ -81,6 +87,8 @@ func recieve_star(tier):
 	elif tier == 2:
 		#HEALTH
 		health += 50
+		
+		#UI update
 		$MainUI.health = health 
 		if $MainUI.max_health < health:
 			$MainUI.max_health = health

@@ -1,52 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://6hl12ockmoxp"]
+[gd_scene load_steps=3 format=3 uid="uid://6hl12ockmoxp"]
 
-[ext_resource type="Texture2D" uid="uid://dmmwxdpe0x3hl" path="res://Assets/UI/death_screen1.png" id="1_3cnv4"]
-[ext_resource type="Script" path="res://UI/deathmenu.gd" id="1_dt5n0"]
-[ext_resource type="Texture2D" uid="uid://d2qrn1hkxkrr5" path="res://Assets/UI/death_screen2.png" id="2_i803r"]
-[ext_resource type="Texture2D" uid="uid://dh2nylxv3vf1p" path="res://Assets/UI/death_screen3.png" id="3_hr2uu"]
-[ext_resource type="Texture2D" uid="uid://nv8ur4ub4fva" path="res://Assets/UI/death_screen4.png" id="4_insdt"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_li71s"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_3cnv4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_i803r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_hr2uu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_insdt")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Animation" id="Animation_ar3dt"]
-resource_name = "text_warp"
-length = 0.9
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cj0i6"]
-_data = {
-"text_warp": SubResource("Animation_ar3dt")
-}
+[ext_resource type="Texture2D" uid="uid://c4f70njs02von" path="res://Assets/UI/death_screen_YOUDIED.png" id="2_vllos"]
+[ext_resource type="Texture2D" uid="uid://6laqp2l3lhp7" path="res://Assets/UI/death_screen_YOUDIED_TEXT.png" id="3_s2x41"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -56,16 +11,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-script = ExtResource("1_dt5n0")
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vllos")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
-position = Vector2(963, 544)
-sprite_frames = SubResource("SpriteFrames_li71s")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_cj0i6")
-}
-autoplay = "text_warp"
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_s2x41")

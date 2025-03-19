@@ -1,7 +1,7 @@
 extends Area2D
 
-const SPEED = 1000
-const RANGE = 5000
+@export var:int SPEED = 1000
+@exportV var:int RANGE = 5000
 
 var DAMAGE = 1
 var pierce = 1
@@ -11,7 +11,7 @@ var travelled_distance = 0
 # essentially gets self forward direction
 var direction
 
-#Returns first root parent node of 'node' with name 'node_name'
+#returns first root parent node of 'node' with name 'node_name'
 func get_root_node_by_name(node : Node, node_name):
 	var root = node
 	while root.get_parent() != null:
